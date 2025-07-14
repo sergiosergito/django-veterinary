@@ -3,6 +3,10 @@ from django.http import HttpResponse, JsonResponse
 from .models import Guardian, Paciente
 from .forms import PacienteForm
 
+from rest_framework import viewsets
+from .serializers import GuardianSerializer
+
+
 def index(request):
     return HttpResponse("Hola mundo")
 # Create your views here.
@@ -48,3 +52,7 @@ def pacienteFormView(request):
     return render(request, 'form_pacientes.html', {
         "form": form
     })
+
+class GuardianViewSet(viewsets.ModelViewSet):
+    queryset = Guardian.objects.all()
+    serializer_class = GuardianSerializer
