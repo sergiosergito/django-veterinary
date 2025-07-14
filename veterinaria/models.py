@@ -24,4 +24,15 @@ class Paciente(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+class Cita(models.Model):
+    veterinario = models.CharField(max_length=100, unique=True)
+    realizada = models.BooleanField(blank=False, default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
+class DetalleCita(models.Model):
+    paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE)
+    cita = models.ForeignKey(Cita, on_delete=models.CASCADE)
+    tratamiento = models.CharField(max_length=500, unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
