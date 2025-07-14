@@ -13,4 +13,5 @@ urlpatterns = [
     #path('guardianes', views.guardianes, name='guardianes'),
     #path('pacientes', views.pacienteFormView, name='pacientes'),
     path('', include(router.urls)),
+    path('guardian/cantidad/', views.guardian_count, name='guardian-count')
 ]

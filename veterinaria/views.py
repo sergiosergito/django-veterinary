@@ -4,6 +4,8 @@ from .models import Guardian, Paciente
 from .forms import PacienteForm
 
 from rest_framework import viewsets
+from rest_framework.decorators import api_view
+
 from .serializers import GuardianSerializer, PacienteSerializer
 
 
@@ -60,3 +62,16 @@ class GuardianViewSet(viewsets.ModelViewSet):
 class PacienteViewSet(viewsets.ModelViewSet):
     queryset = Paciente.objects.all()
     serializer_class = PacienteSerializer
+
+@api_view(['GET'])
+def guardian_count(request):
+    try:
+        cantidad = Guardian.objects.count()
+        return JsonResponse({
+                'cantidad': cantidad
+            },
+            safe=False,
+            status=200,
+        )
+    except Exception as e:
+        return JsonResponse({'message': str(e)}, status=400)
