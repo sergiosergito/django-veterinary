@@ -1,0 +1,20 @@
+<form action="{% url 'guardianes' %}" method="post">
+  {% csrf_token %}
+  <fieldset>
+    <legend><h1>Guardian</h1></legend>
+    {% if error_message %}
+    <p class="error">{{error_message}}</p>
+    {% endif %}
+    <label for="nombre">Nombre</label>
+    <input type="text" name="nombre" />
+    <br />
+    <input type="submit" value="Enviar" />
+  </fieldset>
+</form>
+<h1>Guardianes</h1>
+
+<ul>
+  {% for guardian in guardianes %}
+  <li>{{guardian}}</li>
+  {% endfor %}
+</ul>
