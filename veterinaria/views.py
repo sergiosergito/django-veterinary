@@ -4,7 +4,7 @@ from .models import Guardian, Paciente
 from .forms import PacienteForm
 
 from rest_framework import viewsets
-from .serializers import GuardianSerializer
+from .serializers import GuardianSerializer, PacienteSerializer
 
 
 def index(request):
@@ -56,3 +56,7 @@ def pacienteFormView(request):
 class GuardianViewSet(viewsets.ModelViewSet):
     queryset = Guardian.objects.all()
     serializer_class = GuardianSerializer
+
+class PacienteViewSet(viewsets.ModelViewSet):
+    queryset = Paciente.objects.all()
+    serializer_class = PacienteSerializer
